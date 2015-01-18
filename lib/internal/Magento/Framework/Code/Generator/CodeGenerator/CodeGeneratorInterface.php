@@ -43,4 +43,12 @@ interface CodeGeneratorInterface extends \Zend\Code\Generator\GeneratorInterface
      * @return \Magento\Framework\Code\Generator\CodeGenerator\CodeGeneratorInterface
      */
     public function setImplementedInterfaces(array $interfaces);
+
+    /**
+     * setTraits()
+     *
+     * @param array $traits
+     * @return \Magento\Framework\Code\Generator\CodeGenerator\CodeGeneratorInterface
+     */
+    public function setTraits(array $traits);
 }
