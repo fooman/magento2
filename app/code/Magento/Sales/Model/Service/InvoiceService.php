@@ -5,6 +5,7 @@
  */
 namespace Magento\Sales\Model\Service;
 
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\InvoiceManagementInterface;
 use Magento\Sales\Model\Order;
 
@@ -125,12 +126,12 @@ class InvoiceService implements InvoiceManagementInterface
     }
 
     /**
-     * @param Order $order
+     * @param OrderInterface $order
      * @param array $qtys
      * @return \Magento\Sales\Model\Order\Invoice
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function prepareInvoice(Order $order, array $qtys = [])
+    public function prepareInvoice(OrderInterface $order, array $qtys = [])
     {
         $invoice = $this->orderConverter->toInvoice($order);
         $totalQty = 0;

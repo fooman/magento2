@@ -17,7 +17,7 @@ interface InvoiceManagementInterface
      * Sets invoice capture.
      *
      * @param int $id
-     * @return string
+     * @return bool
      */
     public function setCapture($id);
 
@@ -44,4 +44,14 @@ interface InvoiceManagementInterface
      * @return bool
      */
     public function setVoid($id);
+
+    /**
+     * Prepare Invoice for order, don't save it
+     *
+     * @param \Magento\Sales\Api\Data\OrderInterface $order
+     * @param array                                  $qtys
+     *
+     * @return \Magento\Sales\Api\Data\InvoiceInterface
+     */
+    public function prepareInvoice(\Magento\Sales\Api\Data\OrderInterface $order, array $qtys = []);
 }
