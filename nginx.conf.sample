@@ -93,13 +93,13 @@ location /pub/ {
     add_header X-Frame-Options "SAMEORIGIN";
 }
 
-location /static/ {
+location ~* ^(/pub)?/static/ {
     # Uncomment the following line in production mode
     # expires max;
 
     # Remove signature of the static files that is used to overcome the browser cache
-    location ~ ^/static/version {
-        rewrite ^/static/(version\d*/)?(.*)$ /static/$2 last;
+    location ~ ^(/pub)?/static/version {
+        rewrite ^(/pub)?/static/(version\d*/)?(.*)$ $1/static/$3 last;
     }
 
     location ~* \.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2)$ {
@@ -108,7 +108,7 @@ location /static/ {
         expires +1y;
 
         if (!-f $request_filename) {
-            rewrite ^/static/(version\d*/)?(.*)$ /static.php?resource=$2 last;
+            rewrite ^(/pub)?/static/(version\d*/)?(.*)$ $1/static.php?resource=$3 last;
         }
     }
     location ~* \.(zip|gz|gzip|bz2|csv|xml)$ {
@@ -117,11 +117,11 @@ location /static/ {
         expires    off;
 
         if (!-f $request_filename) {
-           rewrite ^/static/(version\d*/)?(.*)$ /static.php?resource=$2 last;
+           rewrite ^(/pub)?/static/(version\d*/)?(.*)$ $1/static.php?resource=$3 last;
         }
     }
     if (!-f $request_filename) {
-        rewrite ^/static/(version\d*/)?(.*)$ /static.php?resource=$2 last;
+        rewrite ^(/pub)?/static/(version\d*/)?(.*)$ $1/static.php?resource=$3 last;
     }
     add_header X-Frame-Options "SAMEORIGIN";
 }
